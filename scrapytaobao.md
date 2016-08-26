@@ -8,7 +8,7 @@ Scrapy模拟淘宝登录并抓取个人订单数据
 #描述：
 
 首先要获取登录需要的数据
-##通过firefox 登陆淘宝，成功登陆之后 通过查看https://login.taobao.com/member/login.jhtml的请求体抓取以下数据
+1. 通过firefox 登陆淘宝，成功登陆之后 通过查看https://login.taobao.com/member/login.jhtml的请求体抓取以下数据
 将图片中的数据 收集之后 添加到 请求体中
 
         self.post = post = {
@@ -64,22 +64,22 @@ Scrapy模拟淘宝登录并抓取个人订单数据
             'um_token':''
         }
 
-##构造请求头
+2. 构造请求头
 'Host':'login.taobao.com',
 'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0',
 'Referer' : 'https://login.taobao.com/member/login.jhtml',
 'Content-Type': 'application/x-www-form-urlencoded',
 'Connection' : 'Keep-Alive'
 
-##将刚才生抓取的post data 和 构造的请求头一起发送请求到https://login.taobao.com/member/login.jhtml
+3. 将刚才生抓取的post data 和 构造的请求头一起发送请求到https://login.taobao.com/member/login.jhtml
 
-##成功之后 会得到body含有"https://passport.alibaba.com/mini_apply_st.js\?site=0&token=(.*?)&" 的响应
+4. 成功之后 会得到body含有"https://passport.alibaba.com/mini_apply_st.js\?site=0&token=(.*?)&" 的响应
 
-##提取出url 直接get方式请求，会得到body含有{"st":"(.*?)"}的响应
+5. 提取出url 直接get方式请求，会得到body含有{"st":"(.*?)"}的响应
 
-#＃将上面步骤中获取到的st 加入到https://login.taobao.com/member/vst.htm?st=[st]&TPL_username=[username]中，并发送get 请求，之后会得到cookie值，将cookie保存起来 这样就算登陆成功了
+6. 将上面步骤中获取到的st 加入到https://login.taobao.com/member/vst.htm?st=[st]&TPL_username=[username]中，并发送get 请求，之后会得到cookie值，将cookie保存起来 这样就算登陆成功了
 
-##之后请求的时候带上cookie 便会保持登陆的会话了
+7. 之后请求的时候带上cookie 便会保持登陆的会话了
 
 #以下是 spider的代码：
 >注意：在登录之后要始终保持cookie
