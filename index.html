@@ -1,38 +1,356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
     <title>Cean Cheng - GitHub.io by a6205206z</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/a6205206z">View On GitHub</a></li>
+        </nav>
+      </div><!-- end header -->
 
-    <header>
-      <div class="container">
-        <h1>Cean Cheng - GitHub.io</h1>
-        <h2>Cean Cheng</h2>
+    <div class="wrapper">
 
-        <section id="downloads">
-          <a href="https://github.com/a6205206z" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+      <section>
+        <div id="title">
+          <h1>Cean Cheng - GitHub.io</h1>
+          <p>Cean Cheng</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/a6205206z">a6205206z</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
 
-    <div class="container">
-      <section id="main_content">
         <h1>
-<a id="cean-cheng" class="anchor" href="#cean-cheng" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cean Cheng</h1>
+<a id="scrapy模拟淘宝登录并抓取个人订单数据" class="anchor" href="#scrapy%E6%A8%A1%E6%8B%9F%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E5%B9%B6%E6%8A%93%E5%8F%96%E4%B8%AA%E4%BA%BA%E8%AE%A2%E5%8D%95%E6%95%B0%E6%8D%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scrapy模拟淘宝登录并抓取个人订单数据</h1>
 
-<p><a href="scrapytaobao.md">1. 模拟淘宝登录并抓取个人订单</a></p>
+<hr>
+
+<h2>
+<a id="environment" class="anchor" href="#environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment:</h2>
+
+<blockquote>
+<p>Python版本：2.7.12</p>
+
+<p>Scrapy版本：1.1.2</p>
+</blockquote>
+
+<h2>
+<a id="描述" class="anchor" href="#%E6%8F%8F%E8%BF%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>描述：</h2>
+
+<p>首先要获取登录需要的数据
+1.通过firefox 登陆淘宝，成功登陆之后 通过查看<a href="https://login.taobao.com/member/login.jhtml%E7%9A%84%E8%AF%B7%E6%B1%82%E4%BD%93%E6%8A%93%E5%8F%96%E4%BB%A5%E4%B8%8B%E6%95%B0%E6%8D%AE%E5%B0%86%E5%9B%BE%E7%89%87%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE">https://login.taobao.com/member/login.jhtml的请求体抓取以下数据将图片中的数据</a> 收集之后 添加到 请求体中</p>
+
+<pre><code>    self.post = post = {
+        'TPL_username':self.username,
+        'TPL_password':'',
+        'ncoSig':'',
+        'ncoSessionid':'',
+        'ncoToken':'',
+        'slideCodeShow':'false',
+        'lang':'zh_CN',
+        'loginsite':'0',
+        'newlogin':'0',
+        'TPL_redirect_url':'',
+        'from':'tb',
+        'fc':'default',
+        'style':'default',
+        'css_style':'',
+        'keyLogin':'false',
+        'qrLogin':'true',
+        'newMini':'false',
+        'newMini2':'false',
+        'tid':'',
+        'loginType':'3',
+        'minititle':'',
+        'minipara':'',
+        'pstrong':'',
+        'sign':'',
+        'need_sign':'',
+        'isIgnore':'',
+        'full_redirect':'',
+        'sub_jump':'',
+        'popid':'',
+        'callback':'',
+        'guf':'',
+        'not_duplite_str':'',
+        'need_user_id':'',
+        'poy':'',
+        'gvfdcname':'10',
+        'gvfdcre':'',
+        'from_encoding':'',
+        'sub':'',
+        'TPL_password_2':self.password2,
+        'loginASR':'1',
+        'loginASRSuc':'1',
+        'allp':'',
+        'oslanguage':'zh-CN',
+        'sr':'1536*864',
+        'osVer':'',
+        'naviVer':'firefox|48',
+        'miserHardInfo':'',
+        'ua':self.ua,
+        'um_token':''
+    }
+</code></pre>
+
+<p>2.构造请求头</p>
+
+<pre><code>'Host':'login.taobao.com',
+'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0',
+'Referer' : 'https://login.taobao.com/member/login.jhtml',
+'Content-Type': 'application/x-www-form-urlencoded',
+'Connection' : 'Keep-Alive'
+</code></pre>
+
+<p>3.将刚才生抓取的post data 和 构造的请求头一起发送请求到<a href="https://login.taobao.com/member/login.jhtml">https://login.taobao.com/member/login.jhtml</a></p>
+
+<p>4.成功之后 会得到body含有<a href="https://passport.alibaba.com/mini_apply_st.js%5C?site=0&amp;token=(.*?)&amp;">https://passport.alibaba.com/mini_apply_st.js\?site=0&amp;token=(.*?)&amp;</a> 的响应</p>
+
+<p>5.提取出url 直接get方式请求，会得到body含有{\"st\":\"(.*?)\"}的响应</p>
+
+<p>6.将上面步骤中获取到的st 加入到<a href="https://login.taobao.com/member/vst.htm?st=%5Bst%5D&amp;TPL_username=%5Busername%5D%E4%B8%AD%EF%BC%8C%E5%B9%B6%E5%8F%91%E9%80%81get">https://login.taobao.com/member/vst.htm?st=[st]&amp;TPL_username=[username]中，并发送get</a> 请求，之后会得到cookie值，将cookie保存起来 这样就算登陆成功了</p>
+
+<p>7.之后请求的时候带上cookie 便会保持登陆的会话了</p>
+
+<h2>
+<a id="以下是-spider的代码" class="anchor" href="#%E4%BB%A5%E4%B8%8B%E6%98%AF-spider%E7%9A%84%E4%BB%A3%E7%A0%81" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>以下是 spider的代码：</h2>
+
+<blockquote>
+<p>注意：在登录之后要始终保持cookie
+使用 第一次请求使用meta = {'cookiejar' : 1} 之后使用meta = {'cookiejar' : response.meta['cookiejar']}</p>
+</blockquote>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#xmmspider.spiders</span>
+<span class="pl-c"># -*- coding: utf-8 -*-</span>
+<span class="pl-k">import</span> re
+<span class="pl-k">import</span> logging
+<span class="pl-k">import</span> json
+
+<span class="pl-k">from</span> scrapy <span class="pl-k">import</span> Spider,Request,FormRequest
+<span class="pl-k">from</span> utils <span class="pl-k">import</span> extract_one,extract
+<span class="pl-k">from</span> scrapy.selector <span class="pl-k">import</span> Selector
+<span class="pl-k">from</span> xmmspider.taobaologin <span class="pl-k">import</span> TaobaoLogin
+<span class="pl-k">from</span> xmmspider.items <span class="pl-k">import</span> TaobaoOrderItem
+
+
+
+logger <span class="pl-k">=</span> logging.getLogger(<span class="pl-c1">__name__</span>)
+
+<span class="pl-k">class</span> <span class="pl-en">TaobaoOrderSpider</span>(<span class="pl-e">Spider</span>):
+    login_url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://login.taobao.com/member/login.jhtml<span class="pl-pds">"</span></span>
+    order_items_url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://buyertrade.taobao.com/trade/itemlist/asyncBought.htm?action=itemlist/BoughtQueryAction&amp;event_submit_do_query=1&amp;_input_charset=utf8<span class="pl-pds">"</span></span>
+    crawl_url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm<span class="pl-pds">'</span></span>
+    login_headers <span class="pl-k">=</span>  {
+        <span class="pl-s"><span class="pl-pds">'</span>Host<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>login.taobao.com<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span> : <span class="pl-s"><span class="pl-pds">'</span>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>Referer<span class="pl-pds">'</span></span> : <span class="pl-s"><span class="pl-pds">'</span>https://login.taobao.com/member/login.jhtml<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>Content-Type<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>application/x-www-form-urlencoded<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>Connection<span class="pl-pds">'</span></span> : <span class="pl-s"><span class="pl-pds">'</span>Keep-Alive<span class="pl-pds">'</span></span>
+    }
+    headers <span class="pl-k">=</span> {
+        <span class="pl-s"><span class="pl-pds">'</span>User-Agent<span class="pl-pds">'</span></span> : <span class="pl-s"><span class="pl-pds">'</span>Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>Content-Type<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>application/x-www-form-urlencoded<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>Connection<span class="pl-pds">'</span></span> : <span class="pl-s"><span class="pl-pds">'</span>Keep-Alive<span class="pl-pds">'</span></span>
+    }
+    username <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span><span class="pl-c">#taobao user name</span>
+    ua <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>  <span class="pl-c">#ua_code</span>
+    password2 <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span> <span class="pl-c">#password2</span>
+    post <span class="pl-k">=</span> {
+        <span class="pl-s"><span class="pl-pds">'</span>TPL_username<span class="pl-pds">'</span></span>:username,
+        <span class="pl-s"><span class="pl-pds">'</span>TPL_password<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>ncoSig<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>ncoSessionid<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>ncoToken<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>73743bd7087e562773a6798e0be429c41aa9129e<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>slideCodeShow<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>false<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>lang<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>zh_CN<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>loginsite<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>newlogin<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>TPL_redirect_url<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>from<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>tb<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>fc<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>style<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>css_style<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>keyLogin<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>false<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>qrLogin<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>true<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>newMini<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>false<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>newMini2<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>false<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>tid<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>loginType<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>minititle<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>minipara<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>pstrong<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>sign<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>need_sign<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>isIgnore<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>full_redirect<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>sub_jump<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>popid<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>callback<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>guf<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>not_duplite_str<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>need_user_id<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>poy<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>gvfdcname<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>10<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>gvfdcre<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>from_encoding<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>sub<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>TPL_password_2<span class="pl-pds">'</span></span>:password2,
+        <span class="pl-s"><span class="pl-pds">'</span>loginASR<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>loginASRSuc<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>allp<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>oslanguage<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>zh-CN<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>sr<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>1536*864<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>osVer<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>naviVer<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>firefox|48<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>miserHardInfo<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>ua<span class="pl-pds">'</span></span>:ua,
+        <span class="pl-s"><span class="pl-pds">'</span>um_token<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>HV01PAAZ0ab2a16965ccf77857b3ffe0000d7439<span class="pl-pds">'</span></span>
+    }
+    name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>TaobaoOrderSpider<span class="pl-pds">"</span></span>
+    download_delay<span class="pl-k">=</span> <span class="pl-c1">5</span>
+    allowed_domains <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">"</span>taobao.com<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>passport.alibaba.com<span class="pl-pds">"</span></span>]
+
+    <span class="pl-c">#抓取登录链接</span>
+    <span class="pl-k">def</span> <span class="pl-en">start_requests</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>):
+        <span class="pl-k">return</span> [Request(<span class="pl-v">self</span>.login_url,
+            <span class="pl-v">meta</span> <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span> : <span class="pl-c1">1</span>}, 
+            <span class="pl-v">headers</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.headers,
+            <span class="pl-v">callback</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.post_login)]
+
+    <span class="pl-c">#提交登录请求</span>
+    <span class="pl-k">def</span> <span class="pl-en">post_login</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">response</span>):
+        <span class="pl-k">return</span> [FormRequest.from_response(response,
+            <span class="pl-v">method</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>POST<span class="pl-pds">'</span></span>,
+            <span class="pl-v">meta</span> <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span> : response.meta[<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span>]}, 
+            <span class="pl-v">headers</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.login_headers,
+            <span class="pl-v">formdata</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.post,
+            <span class="pl-v">callback</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.search_token,
+            <span class="pl-v">dont_filter</span> <span class="pl-k">=</span> <span class="pl-c1">True</span>, 
+            )]
+
+    <span class="pl-c">#登录成功之后 抓取出token</span>
+    <span class="pl-k">def</span> <span class="pl-en">search_token</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>,<span class="pl-smi">response</span>):
+        tokenPattern <span class="pl-k">=</span> re.compile(<span class="pl-s"><span class="pl-pds">'</span>https://passport.alibaba.com/mini_apply_st.js\?site=0&amp;token=(.*?)&amp;<span class="pl-pds">'</span></span>)
+        tokenMatch <span class="pl-k">=</span> re.search(tokenPattern,response.body)
+        <span class="pl-k">if</span> tokenMatch:
+            logger.log(<span class="pl-c1">1</span>,<span class="pl-s"><span class="pl-pds">"</span>token found<span class="pl-pds">"</span></span>)
+            token <span class="pl-k">=</span> tokenMatch.group(<span class="pl-c1">1</span>)
+            tokenURL <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>https://passport.alibaba.com/mini_apply_st.js?site=0&amp;token=<span class="pl-c1">%s</span>&amp;callback=stCallback6<span class="pl-pds">'</span></span> <span class="pl-k">%</span> token
+
+            <span class="pl-k">return</span> [Request(tokenURL,
+                <span class="pl-v">meta</span> <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span> : response.meta[<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span>]}, 
+                <span class="pl-v">headers</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.headers,
+                <span class="pl-v">callback</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.search_st,
+                )]
+        <span class="pl-k">else</span>:
+            logger.warning(<span class="pl-s"><span class="pl-pds">"</span>login failed[on search_token]<span class="pl-pds">"</span></span>)
+
+    <span class="pl-c">#抓取出st code</span>
+    <span class="pl-k">def</span> <span class="pl-en">search_st</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>,<span class="pl-smi">response</span>):
+        pattern <span class="pl-k">=</span> re.compile(<span class="pl-s"><span class="pl-pds">'</span>{"st":"(.*?)"}<span class="pl-pds">'</span></span>,re.<span class="pl-c1">S</span>)
+        result <span class="pl-k">=</span> re.search(pattern,response.body)
+        <span class="pl-k">if</span> result:
+            logger.log(<span class="pl-c1">1</span>,<span class="pl-s"><span class="pl-pds">"</span>st code found<span class="pl-pds">"</span></span>)
+            st <span class="pl-k">=</span> result.group(<span class="pl-c1">1</span>)
+            stURL <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>https://login.taobao.com/member/vst.htm?st=<span class="pl-c1">%s</span>&amp;TPL_username=<span class="pl-c1">%s</span><span class="pl-pds">'</span></span> <span class="pl-k">%</span> (st,<span class="pl-v">self</span>.username)
+            <span class="pl-k">return</span> [Request(stURL,
+                <span class="pl-v">method</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>GET<span class="pl-pds">"</span></span>,
+                <span class="pl-v">headers</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.headers,
+                <span class="pl-v">meta</span> <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span> : response.meta[<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span>]}, 
+                <span class="pl-v">callback</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.login_process,
+                )]
+        <span class="pl-k">else</span>:
+            logger.warning(<span class="pl-s"><span class="pl-pds">"</span>login failed[on search_st]<span class="pl-pds">"</span></span>)
+
+    <span class="pl-c">#用st code 进行登录</span>
+    <span class="pl-k">def</span> <span class="pl-en">login_process</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>,<span class="pl-smi">response</span>):
+        pattern <span class="pl-k">=</span> re.compile(<span class="pl-s"><span class="pl-pds">'</span>top.location.href = "(.*?)"<span class="pl-pds">'</span></span>,re.<span class="pl-c1">S</span>)
+        match <span class="pl-k">=</span> re.search(pattern,response.body)
+        <span class="pl-k">if</span> match:
+            logger.log(<span class="pl-c1">1</span>,<span class="pl-s"><span class="pl-pds">"</span>st code found<span class="pl-pds">"</span></span>)
+            <span class="pl-k">return</span> [Request(
+                <span class="pl-v">self</span>.crawl_url,
+                <span class="pl-v">method</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>GET<span class="pl-pds">'</span></span>,
+                <span class="pl-v">meta</span> <span class="pl-k">=</span> {<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span> : response.meta[<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span>]},
+                <span class="pl-v">headers</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.headers,
+                <span class="pl-v">dont_filter</span> <span class="pl-k">=</span> <span class="pl-c1">True</span>,
+                <span class="pl-v">callback</span> <span class="pl-k">=</span> <span class="pl-v">self</span>.start_crawl,
+            )]
+        <span class="pl-k">else</span>:
+            logger.warning(<span class="pl-s"><span class="pl-pds">"</span>login failed[on search_st]<span class="pl-pds">"</span></span>)
+
+    <span class="pl-c">#开始爬取订单列表</span>
+    <span class="pl-k">def</span> <span class="pl-en">start_crawl</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">response</span>):
+        <span class="pl-c">#find next page</span>
+        <span class="pl-c">#from first pages to start </span>
+        pattern <span class="pl-k">=</span> re.compile(<span class="pl-s"><span class="pl-pds">'</span>"totalPage":(.*?)},<span class="pl-pds">'</span></span>,re.<span class="pl-c1">S</span>)
+        match <span class="pl-k">=</span> re.search(pattern,response.body)
+        <span class="pl-k">if</span>(match):
+            totalPage <span class="pl-k">=</span> <span class="pl-c1">int</span>(match.group(<span class="pl-c1">1</span>))<span class="pl-c">#get total page</span>
+            <span class="pl-k">if</span> totalPage <span class="pl-k">&gt;</span> <span class="pl-c1">0</span>:
+                pageNum <span class="pl-k">=</span> <span class="pl-c1">0</span>
+                <span class="pl-k">while</span> pageNum <span class="pl-k">&lt;=</span> totalPage:
+                    pageNum<span class="pl-k">+=</span><span class="pl-c1">1</span>
+                    <span class="pl-k">yield</span> FormRequest(
+                        <span class="pl-v">self</span>.order_items_url,
+                        <span class="pl-v">method</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+                        <span class="pl-v">headers</span><span class="pl-k">=</span><span class="pl-v">self</span>.headers,
+                        <span class="pl-v">formdata</span><span class="pl-k">=</span>{
+                            <span class="pl-s"><span class="pl-pds">'</span>pageNum<span class="pl-pds">'</span></span>:<span class="pl-c1">str</span>(pageNum),
+                            <span class="pl-s"><span class="pl-pds">'</span>pageSize<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>15<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>action<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>itemlist/BoughtQueryAction<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>prePageNo<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>buyerNick<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>dateBegin<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>dateEnd<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>lastStartRow<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>logisticsService<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>options<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>orderStatus<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>queryBizType<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>queryOrder<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>desc<span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>rateStatus<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>refund<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            <span class="pl-s"><span class="pl-pds">'</span>sellerNick<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+                            },
+                        <span class="pl-v">callback</span><span class="pl-k">=</span><span class="pl-v">self</span>.parse_item,
+                        <span class="pl-v">meta</span><span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span> : response.meta[<span class="pl-s"><span class="pl-pds">'</span>cookiejar<span class="pl-pds">'</span></span>]}
+                        )
+
+    <span class="pl-k">def</span> <span class="pl-en">parse_item</span>(<span class="pl-smi"><span class="pl-smi">self</span></span>, <span class="pl-smi">response</span>):
+        item <span class="pl-k">=</span> TaobaoOrderItem()
+        item[<span class="pl-s"><span class="pl-pds">"</span>order_json<span class="pl-pds">"</span></span>] <span class="pl-k">=</span> response.body_as_unicode()
+        <span class="pl-k">return</span> item</pre></div>
+
+<p>配置文件新增：</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#cookies</span>
+<span class="pl-c1">COOKIES_ENABLED</span> <span class="pl-k">=</span> <span class="pl-c1">True</span>  <span class="pl-c">#是否启用cookie</span>
+<span class="pl-c1">COOKIES_DEBUG</span> <span class="pl-k">=</span> <span class="pl-c1">False</span>    <span class="pl-c">#是否启用cookie调试</span>
+
+<span class="pl-c1">DOWNLOADER_MIDDLEWARES</span> <span class="pl-k">=</span> {
+    <span class="pl-s"><span class="pl-pds">'</span>scrapy.downloadermiddlewares.cookies.CookiesMiddleware<span class="pl-pds">'</span></span>: <span class="pl-c1">700</span>, <span class="pl-c">#新增cookie中间件</span>
+}
+</pre></div>
       </section>
-    </div>
 
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
