@@ -9,6 +9,7 @@
 ##描述：
 
 首先要获取登录需要的数据
+
 1.通过firefox 登陆淘宝，成功登陆之后 通过查看https://login.taobao.com/member/login.jhtml的请求体抓取以下数据将图片中的数据 收集之后 添加到 请求体中
 
         self.post = post = {
